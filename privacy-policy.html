@@ -87,7 +87,7 @@ a { color: #FF9800; }
 <p><strong>Location.</strong> When you take a photo, the app reads your device's location once and writes the coordinates into that photo's EXIF metadata. Those coordinates stay on your device.</p>
 <p>There is exactly one exception, and it is off by default. If you turn on the <strong>location watermark</strong>, the app also asks your device's built-in geocoding service — provided by your phone's operating system, not by us — to turn those coordinates into a street address to print on the photo. That lookup is the only moment coordinates leave your device, and it happens only while the location watermark is switched on. With the watermark off, your coordinates are never sent anywhere.</p>
 <p>You can leave the location permission denied; the app still works, photos just won't carry GPS coordinates.</p>
-<p><strong>Purchase.</strong> If you buy the premium filters, the transaction is handled entirely by Google Play. We never see or store your payment details.</p>
+<p><strong>Purchases.</strong> This version has no purchases — every film and frame is included. If a later version adds paid content, the transaction will be handled entirely by Google Play and we will never see or store your payment details.</p>
 <h3>What the app does NOT do</h3>
 <ul><li>No account, no sign-up, no login.</li><li>No analytics, no crash reporting, no advertising, no tracking.</li><li>No data is sent to us — we operate no servers.</li><li>No data is sold, and nothing is shared with advertisers or analytics providers. The address lookup described above goes to your device's own operating system service, not to us.</li></ul>
 <h3>Permissions, and why</h3>
@@ -95,8 +95,8 @@ a { color: #FF9800; }
 <tr><th>Permission</th><th>Why</th></tr>
 <tr><td><code>CAMERA</code></td><td>Take photos.</td></tr>
 <tr><td><code>ACCESS_COARSE_LOCATION</code> / <code>ACCESS_FINE_LOCATION</code></td><td>Write GPS coordinates into the photo's EXIF metadata. Read once, when you take a photo. Also used for the location watermark's address lookup — but only while that watermark is switched on.</td></tr>
-<tr><td><code>INTERNET</code></td><td>Used by Google Play to process an in-app purchase. The app itself uploads nothing.</td></tr>
 </table>
+<p>The app requests <strong>no network permission at all</strong>. It makes no network requests of its own: the address lookup above is performed by your device's geocoding service, not by this app.</p>
 <h3>Children</h3>
 <p>The app is not directed at children and does not knowingly collect anything from anyone.</p>
 <h3>Changes</h3>
@@ -113,7 +113,7 @@ a { color: #FF9800; }
 <p><strong>位置。</strong> 你按下快门时，本应用会读取一次设备位置，把经纬度写进那张照片的 EXIF 信息。 坐标留在你的设备上。</p>
 <p>只有一处例外，而且<strong>默认是关的</strong>：如果你打开「地址水印」，本应用会额外请<strong>你手机操作系统 自带的地理编码服务</strong>（提供方是你的手机系统，不是我们）把坐标换成街道地址印在照片上。 这是坐标唯一离开设备的时刻，且只在你开着地址水印时发生。关着的时候，坐标不会被发到任何地方。</p>
 <p>你也可以拒绝位置权限 —— 应用照常能用，只是照片不带 GPS 信息。</p>
-<p><strong>购买。</strong> 如果你购买高级滤镜，交易完全由 Google Play 处理，我们看不到也存不到你的支付信息。</p>
+<p><strong>购买。</strong> 本版本没有任何购买项 —— 所有胶卷与相框都已包含。将来若加入付费内容， 交易将完全由 Google Play 处理，我们看不到也存不到你的支付信息。</p>
 <h3>本应用不做的事</h3>
 <ul><li>没有账号、不用注册、不用登录</li><li>没有统计、没有崩溃上报、没有广告、没有追踪</li><li>不上传任何数据给我们（我们不运营任何服务器）</li><li>不售卖数据，也不与广告或统计服务商共享。上面说的地址查询是发给你设备自己的系统服务的，不是发给我们</li></ul>
 <h3>权限与用途</h3>
@@ -121,8 +121,8 @@ a { color: #FF9800; }
 <tr><th>权限</th><th>用途</th></tr>
 <tr><td><code>CAMERA</code></td><td>拍照</td></tr>
 <tr><td><code>ACCESS_COARSE_LOCATION</code> / <code>ACCESS_FINE_LOCATION</code></td><td>把 GPS 经纬度写进照片 EXIF，只在你拍照时读一次。地址水印的地址查询也用它 —— 但只在水印开着时</td></tr>
-<tr><td><code>INTERNET</code></td><td>供 Google Play 处理应用内购买；应用自身不上传任何东西</td></tr>
 </table>
+<p>本应用<strong>不申请任何联网权限</strong>，自身也不发起任何网络请求：上面那个地址查询是 <strong>你设备的系统服务</strong>在做，不是本应用。</p>
 <h3>儿童</h3>
 <p>本应用不面向儿童，也不会有意收集任何人的任何信息。</p>
 <h3>变更</h3>
