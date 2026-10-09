@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ChromaRetro — Support / 支持 / 支援</title>
+<meta name="description" content="Support for ChromaRetro (取境·复古相机): where your photos are kept, how to export them, and what to do about permissions.">
+<style>
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 0 20px 72px;
+  background: #141414;
+  color: #C8CCD0;
+  font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+main { max-width: 780px; margin: 0 auto; }
+h1 {
+  color: #EDEFF1;
+  font-size: 28px;
+  line-height: 1.3;
+  margin: 40px 0 8px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #FF9800;
+}
+h2 {
+  color: #EDEFF1;
+  font-size: 21px;
+  margin: 44px 0 8px;
+  padding-top: 20px;
+  border-top: 1px solid #1C1C1E;
+}
+h3 {
+  color: #FF9800;
+  font-size: 16px;
+  letter-spacing: .02em;
+  margin: 28px 0 4px;
+}
+p { margin: 12px 0; }
+strong { color: #EDEFF1; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .9em;
+  color: #FF9800;
+  background: #1C1C1E;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+ul { margin: 12px 0; padding-left: 22px; }
+li { margin: 6px 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+}
+th, td {
+  text-align: left;
+  padding: 9px 12px;
+  border: 1px solid #1C1C1E;
+  vertical-align: top;
+}
+th { color: #EDEFF1; background: #1C1C1E; font-weight: 600; }
+td:first-child { white-space: nowrap; }
+hr { border: 0; border-top: 1px solid #1C1C1E; margin: 40px 0; }
+a { color: #FF9800; }
+@media (max-width: 520px) {
+  body { padding: 0 16px 48px; font-size: 15px; }
+  h1 { font-size: 23px; }
+  td:first-child { white-space: normal; }
+}
+</style>
+</head>
+<body>
+<main>
+<h1>支持 / Support / 支援</h1>
+<hr>
+<h2>English</h2>
+<p>ChromaRetro takes photos and keeps them. Nothing here needs an account, and nothing here needs the internet. If something below does not match what you see, write to <code>will714971805@gmail.com</code> — or see the <a href="privacy-policy.html">privacy policy</a> for what the app does with your data.</p>
+<h3>Where do my photos go?</h3>
+<p>Two places, and only one of them is automatic.</p>
+<ul><li><strong>The app's own storage.</strong> Every photo you take is saved here first. This is what the app's gallery view shows you, and it is private to the app.</li><li><strong>Your phone's gallery.</strong> A copy goes here only when you ask for it: tap "Save to gallery" on a photo, or switch on "Save every shot to your gallery too" in settings. That switch is <strong>off to begin with</strong>. The copy lands in an album named <code>RetroCam</code>.</li></ul>
+<h3>How do I get my photos out of the app?</h3>
+<p>Open a photo and tap "Save to gallery", or turn on "Save every shot to your gallery too" in settings and shoot. Either way the copy shows up in your phone's gallery, in the <code>RetroCam</code> album, where every other app can see it.</p>
+<h3>What's the difference between "Auto-save" and "Save every shot to your gallery too"?</h3>
+<p>They sound alike and they are not the same switch.</p>
+<ul><li><strong>"Auto-save"</strong> (on by default) only skips the confirmation step after you shoot — the photo is kept without asking you to tap the tick.</li><li><strong>"Save every shot to your gallery too"</strong> (off by default) additionally writes a copy into your phone's gallery, as described above.</li></ul>
+<h3>I deleted the app. Did I lose my photos?</h3>
+<p>The copies in the app's own storage went with it — that is what deleting an app does. The copies you had saved to your phone's gallery are still there: from the moment they were written, they belong to your gallery, not to the app. So before deleting the app, save anything you want to keep.</p>
+<h3>Why is there no location on the copy in my gallery?</h3>
+<p>Check "Strip location from the gallery copy" in settings. With it on, the app removes the GPS coordinates from the copy it writes into your gallery, and keeps them only on the copy inside the app. It affects the gallery copy only — the address shown on a photo inside the app is unaffected.</p>
+<h3>I edited a photo, but my gallery copy did not change.</h3>
+<p>The app does not rewrite a copy you already exported when you edit or re-crop a photo — editing touches the app's own copy. Save it to your gallery again and the app updates that same copy rather than adding a second one.</p>
+<h3>I shot a photo and tapped discard. Does anything stay in my gallery?</h3>
+<p>No. Discarding a shot you just took withdraws the copy the app had written into your gallery.</p>
+<h3>What do the permission prompts mean?</h3>
+<table>
+<tr><th>What it is for</th><th>Android</th><th>iOS</th></tr>
+<tr><td>Take photos</td><td>Camera</td><td>Camera</td></tr>
+<tr><td>Write the location into the photo</td><td>Location</td><td>Location</td></tr>
+<tr><td>Save the exported copy into your gallery</td><td>Only on Android 9 and older</td><td>"Add to your photo library"</td></tr>
+<tr><td>Import a photo you pick</td><td>nothing — the picker hands over only the photo you chose</td><td>nothing, for the same reason</td></tr>
+</table>
+<p>Declining the camera or the location permission is not fatal: without location, photos simply carry no GPS coordinates. If saving to your gallery fails, that is usually the photo-library permission — the app will say "Couldn't save to your gallery — check photo access in system settings".</p>
+<h3>Do I need an account or an internet connection?</h3>
+<p>Neither. There is no sign-up and no login, and the app makes no network requests of its own — the Android build does not even declare the <code>INTERNET</code> permission. It works in aeroplane mode.</p>
+<h3>Does it cost anything?</h3>
+<p>This version is free, and every film and frame in it is included.</p>
+<h3>Which devices are supported?</h3>
+<p>iOS 15 or later, and Android 7.0 or later.</p>
+<hr>
+<h2>简体中文</h2>
+<p>取境·复古相机拍完就替你收着。这里没有任何一步需要账号，也没有任何一步需要联网。 如果下面的说法和你屏幕上看到的不一致，写信到 <code>will714971805@gmail.com</code> —— App 怎么处理你的数据，见<a href="privacy-policy.html">隐私政策</a>。</p>
+<h3>我的照片存在哪？</h3>
+<p>两个地方，而且其中只有一个是自动的。</p>
+<ul><li><strong>App 自己的目录。</strong> 你拍的每一张都先存在这里。App 里的图库看的就是这一份，它只属于 App。</li><li><strong>手机的系统相册。</strong> 只有在你要求时才会往这里写一份：对某一张点「保存到系统相册」， 或者在设置里打开「每张都自动存进系统相册」。那个开关<strong>默认是关的</strong>。 这一份会落在名为 <code>RetroCam</code> 的相册里。</li></ul>
+<h3>怎么把照片拿出来？</h3>
+<p>打开一张照片，点「保存到系统相册」；或者在设置里打开「每张都自动存进系统相册」再拍。 两条路都会让那一份出现在手机相册的 <code>RetroCam</code> 相册里，其它应用也就都能看到它了。</p>
+<h3>「自动保存」和「每张都自动存进系统相册」有什么区别？</h3>
+<p>名字像，但不是同一个开关。</p>
+<ul><li><strong>「自动保存」</strong>（默认<strong>开</strong>）只是省掉拍完那一步确认 —— 不再让你点一下对勾，直接收下。</li><li><strong>「每张都自动存进系统相册」</strong>（默认<strong>关</strong>）才是额外往手机的系统相册里写一份，如上所述。</li></ul>
+<h3>我把 App 删了，照片是不是没了？</h3>
+<p>App 自己目录里的那份跟着一起没了 —— 删 App 就是这个意思。 但你先前保存到手机相册里的那些还在：从写进去那一刻起，它们属于你的相册，不属于 App。 所以删 App 之前，把想留的先存进系统相册。</p>
+<h3>为什么相册里那一份没有位置？</h3>
+<p>看一下设置里的「相册副本不含位置」。开着的话，App 会把写进系统相册的那一份里的经纬度剥掉， 坐标只留在 App 内的那一份上。它只作用于相册那一份 —— App 里照片上显示的地址不受影响。</p>
+<h3>我编辑了照片，可相册里那份没变。</h3>
+<p>你编辑或重新裁切时，App 不会去改写你已经导出的那份 —— 编辑动的是 App 内的那一份。 再点一次「保存到系统相册」，App 会更新同一个相册条目，而不是存成两张。</p>
+<h3>拍完点了「丢弃」，相册里会留下东西吗？</h3>
+<p>不会。丢弃刚拍的那一张时，App 会把已经写进系统相册的那一份一并撤下。</p>
+<h3>那些权限申请是干什么的？</h3>
+<table>
+<tr><th>用来做什么</th><th>Android</th><th>iOS</th></tr>
+<tr><td>拍照</td><td>相机</td><td>相机</td></tr>
+<tr><td>把位置写进照片</td><td>位置</td><td>定位</td></tr>
+<tr><td>把导出的那一份存进系统相册</td><td>仅 Android 9 及以下会问</td><td>「添加到你的照片图库」</td></tr>
+<tr><td>导入你挑的照片</td><td>不会问 —— 选图器只把你选的那张交过来</td><td>同样不会问</td></tr>
+</table>
+<p>拒绝相机或位置权限都不致命：没有位置，照片就只是不带 GPS 信息。 如果保存到系统相册失败，通常是相册权限 —— App 会提示「没能保存到系统相册，请检查相册权限」。</p>
+<h3>需要账号或者联网吗？</h3>
+<p>都不需要。不用注册、不用登录，App 自身也不发起任何网络请求 —— Android 包连 <code>INTERNET</code> 权限都没有声明。飞行模式下照常能用。</p>
+<h3>收费吗？</h3>
+<p>本版本免费，里面的每一款胶卷和相框都已包含。</p>
+<h3>支持哪些设备？</h3>
+<p>iOS 15 及以上，Android 7.0 及以上。</p>
+<hr>
+<h2>繁體中文</h2>
+<p>取境·復古相機拍完就替你收著。這裡沒有任何一步需要帳號，也沒有任何一步需要連網。 如果下面的說法和你在螢幕上看到的不一致，寫信到 <code>will714971805@gmail.com</code> —— App 怎麼處理你的資料，見<a href="privacy-policy.html">隱私政策</a>。</p>
+<h3>我的照片存在哪？</h3>
+<p>兩個地方，而且其中只有一個是自動的。</p>
+<ul><li><strong>App 自己的目錄。</strong> 你拍的每一張都先存在這裡。App 裡的圖庫看的就是這一份，它只屬於 App。</li><li><strong>手機的系統相簿。</strong> 只有在你要求時才會往這裡寫一份：對某一張點「儲存到系統相簿」， 或者在設定裡開啟「每張都自動存進系統相簿」。那個開關<strong>預設是關的</strong>。 這一份會落在名為 <code>RetroCam</code> 的相簿裡。</li></ul>
+<h3>怎麼把照片拿出來？</h3>
+<p>開啟一張照片，點「儲存到系統相簿」；或者在設定裡開啟「每張都自動存進系統相簿」再拍。 兩條路都會讓那一份出現在手機相簿的 <code>RetroCam</code> 相簿裡，其它應用也就都能看到它了。</p>
+<h3>「自動儲存」和「每張都自動存進系統相簿」有什麼差別？</h3>
+<p>名字像，但不是同一個開關。</p>
+<ul><li><strong>「自動儲存」</strong>（預設<strong>開</strong>）只是省掉拍完那一步確認 —— 不再讓你點一下對勾，直接收下。</li><li><strong>「每張都自動存進系統相簿」</strong>（預設<strong>關</strong>）才是額外往手機的系統相簿裡寫一份，如上所述。</li></ul>
+<h3>我把 App 刪了，照片是不是沒了？</h3>
+<p>App 自己目錄裡的那份跟著一起沒了 —— 刪 App 就是這個意思。 但你先前儲存到手機相簿裡的那些還在：從寫進去那一刻起，它們屬於你的相簿，不屬於 App。 所以刪 App 之前，把想留的先存進系統相簿。</p>
+<h3>為什麼相簿裡那一份沒有位置？</h3>
+<p>看一下設定裡的「相簿副本不含位置」。開著的話，App 會把寫進系統相簿的那一份裡的經緯度移除， 座標只留在 App 內的那一份上。它只作用於相簿那一份 —— App 裡照片上顯示的地址不受影響。</p>
+<h3>我編輯了照片，可相簿裡那份沒變。</h3>
+<p>你編輯或重新裁切時，App 不會去改寫你已經匯出的那份 —— 編輯動的是 App 內的那一份。 再點一次「儲存到系統相簿」，App 會更新同一個相簿項目，而不是存成兩張。</p>
+<h3>拍完點了「丟棄」，相簿裡會留下東西嗎？</h3>
+<p>不會。丟棄剛拍的那一張時，App 會把已經寫進系統相簿的那一份一併撤下。</p>
+<h3>那些權限要求是幹什麼的？</h3>
+<table>
+<tr><th>用來做什麼</th><th>Android</th><th>iOS</th></tr>
+<tr><td>拍照</td><td>相機</td><td>相機</td></tr>
+<tr><td>把位置寫進照片</td><td>位置</td><td>定位</td></tr>
+<tr><td>把匯出的那一份存進系統相簿</td><td>僅 Android 9 及以下會問</td><td>「加入你的照片圖庫」</td></tr>
+<tr><td>匯入你挑的照片</td><td>不會問 —— 選圖器只把你選的那張交過來</td><td>同樣不會問</td></tr>
+</table>
+<p>拒絕相機或位置權限都不致命：沒有位置，照片就只是不帶 GPS 資訊。 如果儲存到系統相簿失敗，通常是相簿權限 —— App 會提示「沒能儲存到系統相簿，請檢查相簿權限」。</p>
+<h3>需要帳號或者連網嗎？</h3>
+<p>都不需要。不用註冊、不用登入，App 自身也不發起任何網路請求 —— Android 套件連 <code>INTERNET</code> 權限都沒有宣告。飛航模式下照常能用。</p>
+<h3>收費嗎？</h3>
+<p>本版本免費，裡面的每一款膠卷和相框都已包含。</p>
+<h3>支援哪些裝置？</h3>
+<p>iOS 15 及以上，Android 7.0 及以上。</p>
+</main>
+</body>
+</html>
