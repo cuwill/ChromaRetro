@@ -70,12 +70,47 @@ a { color: #FF9800; }
 @media (max-width: 520px) {
   body { padding: 0 16px 48px; font-size: 15px; }
   h1 { font-size: 23px; }
-  td:first-child { white-space: normal; }
+
+  /* 三列的表在手机上塞不下 —— 权限表中间那列是 `NSPhotoLibraryUsageDescription`
+     这种**一个词 32 个字符**的常量名，它没法折行，于是整张表横着溢出、
+     右边那一列直接被切掉。而这页恰恰是用户在手机上最常打开的那一页。
+
+     所以窄屏改成「一行一块」：藏掉表头那行，每行摊开、每格用 ::before 把表头
+     印回自己头上（标签来自 td 的 data-label，见 convert()）。 */
+  table, tbody, tr, th, td { display: block; width: auto; }
+  /* ⚠️ 选择器必须是 `table tr:first-child`，**不能**写 `table > tr:first-child` ——
+     浏览器解析时会给裸 `<tr>` 套一层隐含的 `<tbody>`，于是它压根不是 table 的子元素，
+     那条规则永远不命中，表头就原样留在手机上（第一版就是这么错的）。 */
+  table tr:first-child { display: none; }
+  table tr {
+    border: 1px solid #1C1C1E;
+    border-radius: 5px;
+    margin: 0 0 12px;
+    padding: 7px 0;
+  }
+  table td { border: 0; padding: 5px 14px; white-space: normal; }
+  table td:first-child {
+    color: #EDEFF1;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  table td:not(:first-child)::before {
+    content: attr(data-label);
+    display: block;
+    color: #8A8F94;
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  /* 常量名允许从任意位置断开，别让它再撑出一列 */
+  code { overflow-wrap: anywhere; }
 }
+
 </style>
 </head>
 <body>
 <main>
+
 <h1>隐私政策 / Privacy Policy / 隱私政策</h1>
 <hr>
 <h2>English</h2>
@@ -94,10 +129,10 @@ a { color: #FF9800; }
 <p>The names differ per platform, so both are listed. The app asks for nothing beyond these.</p>
 <table>
 <tr><th>What it is for</th><th>Android</th><th>iOS</th></tr>
-<tr><td>Take photos</td><td><code>CAMERA</code></td><td><code>NSCameraUsageDescription</code></td></tr>
-<tr><td>Write GPS coordinates into the photo's EXIF</td><td><code>ACCESS_COARSE_LOCATION</code> / <code>ACCESS_FINE_LOCATION</code>, read once when you take a photo</td><td><code>NSLocationWhenInUseUsageDescription</code></td></tr>
-<tr><td>Write the exported copy into the system gallery</td><td><code>WRITE_EXTERNAL_STORAGE</code>, and only on Android 9 and older — from Android 10 on, saving to the gallery needs no permission</td><td><code>NSPhotoLibraryAddUsageDescription</code></td></tr>
-<tr><td>Import a photo you pick</td><td>none — the system photo picker hands over only the photos you select</td><td>none, for the same reason; <code>NSPhotoLibraryUsageDescription</code> is what lets the app find a copy it exported earlier and update <strong>that</strong> copy in place instead of saving a duplicate</td></tr>
+<tr><td data-label="What it is for">Take photos</td><td data-label="Android"><code>CAMERA</code></td><td data-label="iOS"><code>NSCameraUsageDescription</code></td></tr>
+<tr><td data-label="What it is for">Write GPS coordinates into the photo's EXIF</td><td data-label="Android"><code>ACCESS_COARSE_LOCATION</code> / <code>ACCESS_FINE_LOCATION</code>, read once when you take a photo</td><td data-label="iOS"><code>NSLocationWhenInUseUsageDescription</code></td></tr>
+<tr><td data-label="What it is for">Write the exported copy into the system gallery</td><td data-label="Android"><code>WRITE_EXTERNAL_STORAGE</code>, and only on Android 9 and older — from Android 10 on, saving to the gallery needs no permission</td><td data-label="iOS"><code>NSPhotoLibraryAddUsageDescription</code></td></tr>
+<tr><td data-label="What it is for">Import a photo you pick</td><td data-label="Android">none — the system photo picker hands over only the photos you select</td><td data-label="iOS">none, for the same reason; <code>NSPhotoLibraryUsageDescription</code> is what lets the app find a copy it exported earlier and update <strong>that</strong> copy in place instead of saving a duplicate</td></tr>
 </table>
 <p>The app requests <strong>no network permission at all</strong>, on either platform (the Android build does not even declare <code>INTERNET</code>). It makes no network requests of its own: the address lookup above is performed by your device's geocoding service, in the operating system's own process, not by this app.</p>
 <h3>Children</h3>
@@ -123,10 +158,10 @@ a { color: #FF9800; }
 <p>两端的权限名字不一样，所以都列出来。除了这些，本应用不要别的。</p>
 <table>
 <tr><th>用来做什么</th><th>Android</th><th>iOS</th></tr>
-<tr><td>拍照</td><td><code>CAMERA</code></td><td><code>NSCameraUsageDescription</code></td></tr>
-<tr><td>把 GPS 经纬度写进照片 EXIF</td><td><code>ACCESS_COARSE_LOCATION</code> / <code>ACCESS_FINE_LOCATION</code>，只在你拍照时读一次</td><td><code>NSLocationWhenInUseUsageDescription</code></td></tr>
-<tr><td>把导出的那一份写进系统相册</td><td><code>WRITE_EXTERNAL_STORAGE</code>，且仅限 Android 9 及以下 —— Android 10 起写系统相册不需要权限</td><td><code>NSPhotoLibraryAddUsageDescription</code></td></tr>
-<tr><td>导入你挑的照片</td><td>无 —— 走系统选图器，只拿得到你选的那几张</td><td>同样没有；<code>NSPhotoLibraryUsageDescription</code> 是用来<strong>找出本应用先前导出的那一份、就地更新它</strong>，免得存成两张</td></tr>
+<tr><td data-label="用来做什么">拍照</td><td data-label="Android"><code>CAMERA</code></td><td data-label="iOS"><code>NSCameraUsageDescription</code></td></tr>
+<tr><td data-label="用来做什么">把 GPS 经纬度写进照片 EXIF</td><td data-label="Android"><code>ACCESS_COARSE_LOCATION</code> / <code>ACCESS_FINE_LOCATION</code>，只在你拍照时读一次</td><td data-label="iOS"><code>NSLocationWhenInUseUsageDescription</code></td></tr>
+<tr><td data-label="用来做什么">把导出的那一份写进系统相册</td><td data-label="Android"><code>WRITE_EXTERNAL_STORAGE</code>，且仅限 Android 9 及以下 —— Android 10 起写系统相册不需要权限</td><td data-label="iOS"><code>NSPhotoLibraryAddUsageDescription</code></td></tr>
+<tr><td data-label="用来做什么">导入你挑的照片</td><td data-label="Android">无 —— 走系统选图器，只拿得到你选的那几张</td><td data-label="iOS">同样没有；<code>NSPhotoLibraryUsageDescription</code> 是用来<strong>找出本应用先前导出的那一份、就地更新它</strong>，免得存成两张</td></tr>
 </table>
 <p>本应用<strong>两端都不申请任何联网权限</strong>（Android 包连 <code>INTERNET</code> 都没有声明）， 自身也不发起任何网络请求：上面那个地址查询是<strong>你设备的系统服务</strong>在它自己的进程里做的， 不是本应用。</p>
 <h3>儿童</h3>
@@ -152,10 +187,10 @@ a { color: #FF9800; }
 <p>兩端的權限名稱不一樣，所以都列出來。除了這些，本應用不要別的。</p>
 <table>
 <tr><th>用來做什麼</th><th>Android</th><th>iOS</th></tr>
-<tr><td>拍照</td><td><code>CAMERA</code></td><td><code>NSCameraUsageDescription</code></td></tr>
-<tr><td>把 GPS 經緯度寫進照片 EXIF</td><td><code>ACCESS_COARSE_LOCATION</code> / <code>ACCESS_FINE_LOCATION</code>，只在你拍照時讀一次</td><td><code>NSLocationWhenInUseUsageDescription</code></td></tr>
-<tr><td>把匯出的那一份寫進系統相簿</td><td><code>WRITE_EXTERNAL_STORAGE</code>，且僅限 Android 9 及以下 —— Android 10 起寫系統相簿不需要權限</td><td><code>NSPhotoLibraryAddUsageDescription</code></td></tr>
-<tr><td>匯入你挑的照片</td><td>無 —— 走系統選圖器，只拿得到你選的那幾張</td><td>同樣沒有；<code>NSPhotoLibraryUsageDescription</code> 是用來<strong>找出本應用先前匯出的那一份、就地更新它</strong>，免得存成兩張</td></tr>
+<tr><td data-label="用來做什麼">拍照</td><td data-label="Android"><code>CAMERA</code></td><td data-label="iOS"><code>NSCameraUsageDescription</code></td></tr>
+<tr><td data-label="用來做什麼">把 GPS 經緯度寫進照片 EXIF</td><td data-label="Android"><code>ACCESS_COARSE_LOCATION</code> / <code>ACCESS_FINE_LOCATION</code>，只在你拍照時讀一次</td><td data-label="iOS"><code>NSLocationWhenInUseUsageDescription</code></td></tr>
+<tr><td data-label="用來做什麼">把匯出的那一份寫進系統相簿</td><td data-label="Android"><code>WRITE_EXTERNAL_STORAGE</code>，且僅限 Android 9 及以下 —— Android 10 起寫系統相簿不需要權限</td><td data-label="iOS"><code>NSPhotoLibraryAddUsageDescription</code></td></tr>
+<tr><td data-label="用來做什麼">匯入你挑的照片</td><td data-label="Android">無 —— 走系統選圖器，只拿得到你選的那幾張</td><td data-label="iOS">同樣沒有；<code>NSPhotoLibraryUsageDescription</code> 是用來<strong>找出本應用先前匯出的那一份、就地更新它</strong>，免得存成兩張</td></tr>
 </table>
 <p>本應用<strong>兩端都不申請任何連網權限</strong>（Android 套件連 <code>INTERNET</code> 都沒有宣告）， 自身也不發起任何網路請求：上面那個地址查詢是<strong>你裝置的系統服務</strong>在它自己的行程裡做的， 不是本應用。</p>
 <h3>兒童</h3>
@@ -164,6 +199,7 @@ a { color: #FF9800; }
 <p>政策有變化時，頂部日期會同步更新。</p>
 <h3>聯絡方式</h3>
 <p>有問題，或者發現上面寫的和你看到的對不上？寫信到 <code>will714971805@gmail.com</code>， 或看<a href="support.html">支援頁</a>。</p>
+
 </main>
 </body>
 </html>

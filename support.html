@@ -70,12 +70,47 @@ a { color: #FF9800; }
 @media (max-width: 520px) {
   body { padding: 0 16px 48px; font-size: 15px; }
   h1 { font-size: 23px; }
-  td:first-child { white-space: normal; }
+
+  /* 三列的表在手机上塞不下 —— 权限表中间那列是 `NSPhotoLibraryUsageDescription`
+     这种**一个词 32 个字符**的常量名，它没法折行，于是整张表横着溢出、
+     右边那一列直接被切掉。而这页恰恰是用户在手机上最常打开的那一页。
+
+     所以窄屏改成「一行一块」：藏掉表头那行，每行摊开、每格用 ::before 把表头
+     印回自己头上（标签来自 td 的 data-label，见 convert()）。 */
+  table, tbody, tr, th, td { display: block; width: auto; }
+  /* ⚠️ 选择器必须是 `table tr:first-child`，**不能**写 `table > tr:first-child` ——
+     浏览器解析时会给裸 `<tr>` 套一层隐含的 `<tbody>`，于是它压根不是 table 的子元素，
+     那条规则永远不命中，表头就原样留在手机上（第一版就是这么错的）。 */
+  table tr:first-child { display: none; }
+  table tr {
+    border: 1px solid #1C1C1E;
+    border-radius: 5px;
+    margin: 0 0 12px;
+    padding: 7px 0;
+  }
+  table td { border: 0; padding: 5px 14px; white-space: normal; }
+  table td:first-child {
+    color: #EDEFF1;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  table td:not(:first-child)::before {
+    content: attr(data-label);
+    display: block;
+    color: #8A8F94;
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  /* 常量名允许从任意位置断开，别让它再撑出一列 */
+  code { overflow-wrap: anywhere; }
 }
+
 </style>
 </head>
 <body>
 <main>
+
 <h1>支持 / Support / 支援</h1>
 <hr>
 <h2>English</h2>
@@ -99,10 +134,10 @@ a { color: #FF9800; }
 <h3>What do the permission prompts mean?</h3>
 <table>
 <tr><th>What it is for</th><th>Android</th><th>iOS</th></tr>
-<tr><td>Take photos</td><td>Camera</td><td>Camera</td></tr>
-<tr><td>Write the location into the photo</td><td>Location</td><td>Location</td></tr>
-<tr><td>Save the exported copy into your gallery</td><td>Only on Android 9 and older</td><td>"Add to your photo library"</td></tr>
-<tr><td>Import a photo you pick</td><td>nothing — the picker hands over only the photo you chose</td><td>nothing, for the same reason</td></tr>
+<tr><td data-label="What it is for">Take photos</td><td data-label="Android">Camera</td><td data-label="iOS">Camera</td></tr>
+<tr><td data-label="What it is for">Write the location into the photo</td><td data-label="Android">Location</td><td data-label="iOS">Location</td></tr>
+<tr><td data-label="What it is for">Save the exported copy into your gallery</td><td data-label="Android">Only on Android 9 and older</td><td data-label="iOS">"Add to your photo library"</td></tr>
+<tr><td data-label="What it is for">Import a photo you pick</td><td data-label="Android">nothing — the picker hands over only the photo you chose</td><td data-label="iOS">nothing, for the same reason</td></tr>
 </table>
 <p>Declining the camera or the location permission is not fatal: without location, photos simply carry no GPS coordinates. If saving to your gallery fails, that is usually the photo-library permission — the app will say "Couldn't save to your gallery — check photo access in system settings".</p>
 <h3>Do I need an account or an internet connection?</h3>
@@ -133,10 +168,10 @@ a { color: #FF9800; }
 <h3>那些权限申请是干什么的？</h3>
 <table>
 <tr><th>用来做什么</th><th>Android</th><th>iOS</th></tr>
-<tr><td>拍照</td><td>相机</td><td>相机</td></tr>
-<tr><td>把位置写进照片</td><td>位置</td><td>定位</td></tr>
-<tr><td>把导出的那一份存进系统相册</td><td>仅 Android 9 及以下会问</td><td>「添加到你的照片图库」</td></tr>
-<tr><td>导入你挑的照片</td><td>不会问 —— 选图器只把你选的那张交过来</td><td>同样不会问</td></tr>
+<tr><td data-label="用来做什么">拍照</td><td data-label="Android">相机</td><td data-label="iOS">相机</td></tr>
+<tr><td data-label="用来做什么">把位置写进照片</td><td data-label="Android">位置</td><td data-label="iOS">定位</td></tr>
+<tr><td data-label="用来做什么">把导出的那一份存进系统相册</td><td data-label="Android">仅 Android 9 及以下会问</td><td data-label="iOS">「添加到你的照片图库」</td></tr>
+<tr><td data-label="用来做什么">导入你挑的照片</td><td data-label="Android">不会问 —— 选图器只把你选的那张交过来</td><td data-label="iOS">同样不会问</td></tr>
 </table>
 <p>拒绝相机或位置权限都不致命：没有位置，照片就只是不带 GPS 信息。 如果保存到系统相册失败，通常是相册权限 —— App 会提示「没能保存到系统相册，请检查相册权限」。</p>
 <h3>需要账号或者联网吗？</h3>
@@ -167,10 +202,10 @@ a { color: #FF9800; }
 <h3>那些權限要求是幹什麼的？</h3>
 <table>
 <tr><th>用來做什麼</th><th>Android</th><th>iOS</th></tr>
-<tr><td>拍照</td><td>相機</td><td>相機</td></tr>
-<tr><td>把位置寫進照片</td><td>位置</td><td>定位</td></tr>
-<tr><td>把匯出的那一份存進系統相簿</td><td>僅 Android 9 及以下會問</td><td>「加入你的照片圖庫」</td></tr>
-<tr><td>匯入你挑的照片</td><td>不會問 —— 選圖器只把你選的那張交過來</td><td>同樣不會問</td></tr>
+<tr><td data-label="用來做什麼">拍照</td><td data-label="Android">相機</td><td data-label="iOS">相機</td></tr>
+<tr><td data-label="用來做什麼">把位置寫進照片</td><td data-label="Android">位置</td><td data-label="iOS">定位</td></tr>
+<tr><td data-label="用來做什麼">把匯出的那一份存進系統相簿</td><td data-label="Android">僅 Android 9 及以下會問</td><td data-label="iOS">「加入你的照片圖庫」</td></tr>
+<tr><td data-label="用來做什麼">匯入你挑的照片</td><td data-label="Android">不會問 —— 選圖器只把你選的那張交過來</td><td data-label="iOS">同樣不會問</td></tr>
 </table>
 <p>拒絕相機或位置權限都不致命：沒有位置，照片就只是不帶 GPS 資訊。 如果儲存到系統相簿失敗，通常是相簿權限 —— App 會提示「沒能儲存到系統相簿，請檢查相簿權限」。</p>
 <h3>需要帳號或者連網嗎？</h3>
@@ -179,6 +214,7 @@ a { color: #FF9800; }
 <p>本版本免費，裡面的每一款膠卷和相框都已包含。</p>
 <h3>支援哪些裝置？</h3>
 <p>iOS 15 及以上，Android 7.0 及以上。</p>
+
 </main>
 </body>
 </html>
